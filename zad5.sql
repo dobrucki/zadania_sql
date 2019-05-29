@@ -21,6 +21,15 @@ where placa < (select avg(placa) from pracownicy);
 select nazwa, (select count(*) from pracownicy where dzialy.id_dzialu = pracownicy.id_dzialu) as liczbaPracownikow
 from dzialy;
 
-select concat(pracownicy.nazwisko, ' ', dzialy.nazwa) as lancuch
-from pracownicy
-inner join dzialy on pracownicy.id_dzialu = dzialy.id_dzialu;
+-- 9
+select concat(pracownicy.nazwisko, ' ', dzialy.nazwa) as nazwisko_dzial
+from pracownicy, dzialy
+where pracownicy.id_dzialu = dzialy.id_dzialu;
+
+-- 10
+select dzialy.nazwa as dzial,
+       pracownicy.stanowisko as etat,
+       count(pracownicy.stanowisko) as liczba_praownikow
+from dzialy, pracownicy
+where pracownicy.id_dzialu = dzialy.id_dzialu
+group by nazwa, stanowisko;
