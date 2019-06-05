@@ -33,3 +33,16 @@ select dzialy.nazwa as dzial,
 from dzialy, pracownicy
 where pracownicy.id_dzialu = dzialy.id_dzialu
 group by nazwa, stanowisko;
+
+-- 11
+select pracownicy.nazwisko, dzialy.nazwa, stanowiska.placa_min, stanowiska.placa_max
+from pracownicy, dzialy, stanowiska
+where placa_min > 1500 and placa_max < 3500 and pracownicy.stanowisko = stanowiska.stanowisko and pracownicy.id_dzialu = dzialy.id_dzialu;
+
+-- 12
+select pracownicy.nazwisko, pracownicy.placa
+from pracownicy
+where pracownicy.placa > (select max(placa) from pracownicy where id_dzialu = 30);
+
+-- 13
+
